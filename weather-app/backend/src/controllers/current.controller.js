@@ -2,7 +2,7 @@ const {Current} = require('../models');
 
 const currentMapper = async ({name,region,country,lat,lon,tz_id,localtime})=>{
 
-    return {
+    return { 
         town:name,
         state:region,
         nation:country,

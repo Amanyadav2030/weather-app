@@ -14,6 +14,7 @@ export const getForecastDataApi=(place,day)=>async (dispatch)=>{
             days:day,
             label:"Forecast",
         })
+        dispatch(forecastApiMapper(res.data.forecast.forecastday[0]['astro']))
         dispatch({type:GET_FORECAST_SUCCESS,payload:res.data});
     }catch(e){
         dispatch({type:GET_FORECAST_ERROR});

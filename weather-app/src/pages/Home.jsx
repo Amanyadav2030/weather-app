@@ -42,29 +42,31 @@ const Home = () => {
     e.preventDefault();
     if (change == 'current') {
       dispatch(getCurrentDataApi(place))
-
-      dispatch(currentApiMapper(currentapiData.location));
+      // .then((res) => {
+      //   // dispatch(currentApiMapper(currentapiData.location));
+      // })
     } else {
-      dispatch(getForecastDataApi(place, day));
-      if (forecastapiData.forecast) {
-        dispatch(forecastApiMapper(forecastapiData.forecast.forecastday[0]['astro']))
-        setTimeout(() => {
-          setCheckAstro(true)
-        }, 3000);
-      }
+      dispatch(getForecastDataApi(place, day)).then(() => { })
+      // if (forecastapiData.forecast) {
+      //   dispatch(forecastApiMapper(forecastapiData.forecast.forecastday[0]['astro']))
+      // setTimeout(() => {
+      //   setCheckAstro(true)
+      // }, 3000);
+      // }
     }
   }
   //****************UseEffect for currentData*****************
   useEffect(() => {
-
-  }, [dispatch]);
+    console.log(currentapiData);
+    console.log(currentMapData, 'Mapped Data');
+  }, [currentMapData]);
   //****************UseEffect for ForecastData****************
   useEffect(() => {
-
     if (forecastMapData.forecast) {
+      setCheckAstro(true);
       // console.log(forecastapiData.forecast.forecastday[0]['astro'], "check forecast");
     }
-  }, [dispatch, loading2, error2, forecastapiData.forecast]);
+  }, [forecastapiData.forecast]);
   return (
     <VStack>
       <Text fontSize={'2rem'} color='#dc143c'>

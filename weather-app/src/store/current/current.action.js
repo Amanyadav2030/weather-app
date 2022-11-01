@@ -12,7 +12,8 @@ export const getCurrentDataApi=(place)=>async (dispatch)=>{
             q:place,
             label:"Current"
         })
-        currentApiMapper(res.data.location);
+        console.log(res.data.location,"Inside action")
+        await dispatch( currentApiMapper(res.data.location));
         dispatch({type:GET_CURRENT_SUCCESS,payload:res.data});
 
     }catch(e){
